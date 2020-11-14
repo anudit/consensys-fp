@@ -1,0 +1,32 @@
+name: "Textile Bucket - Deploy"
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  bucket_push:
+    runs-on: ubuntu-latest
+    name: Push Textile Bucket
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2.3.2
+    - name: push action
+      id: push
+      uses: textileio/github-action-buckets@v20
+      with:
+        key: ${{ secrets.TEXTILE_ACCOUNT_KEY }}
+        secret: ${{ secrets.TEXTILE_ACCOUNT_SECRET }}
+        bucket: "consensys"
+        thread: "bafks5wjjm6ftz4ryuqhsfgxtlqs4vh6xz2gfbvv3u33magdjax2cpda"
+        path: "./ui"
+    - run: echo "bucket - ${{ steps.push.outputs.key  }}"
+    - run: echo "ipfs - ${{ steps.push.outputs.ipfs }}"
+    - run: echo "ipfs link - ${{ steps.push.outputs.ipfsUrl }}"
+    - run: echo "ipns - ${{ steps.push.outputs.ipns }}"
+    - run: echo "ipns link - ${{ steps.push.outputs.ipnsUrl }}"
+    - run: echo "hub - ${{ steps.push.outputs.hub }}"
+    - run: echo "www - ${{ steps.push.outputs.www }}"
