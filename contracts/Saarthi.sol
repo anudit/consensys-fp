@@ -58,7 +58,6 @@ library SafeMath {
 /// @title Primary Saarthi Contract
 /// @author Anudit Nagar
 /// @dev All function calls are currently implemented without side effects
-
 contract Saarthi {
 
     using SafeMath for uint256;

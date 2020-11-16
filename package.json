@@ -5,6 +5,13 @@
   "main": "truffle-config.js",
   "scripts": {
     "test": "truffle test",
+    "deploy": "npm run deploy:ropsten && npm run deploy:rinkeby && npm run deploy:kovan && npm run deploy:goerli && npm run deploy:mumbai && npm run deploy:rsktestnet",
+    "deploy:ropsten": "truffle migrate --network ropsten",
+    "deploy:rinkeby": "truffle migrate --network rinkeby",
+    "deploy:kovan": "truffle migrate --network kovan",
+    "deploy:goerli": "truffle migrate --network goerli",
+    "deploy:mumbai": "truffle migrate --network mumbai",
+    "deploy:rsktestnet": "truffle migrate --network rsktestnet",
     "setup": "node setupFunds.js rsktestnet"
   },
   "repository": {
