@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v2.3.2
     - name: push action
       id: push
-      uses: textileio/github-action-buckets@v20
+      uses: textileio/github-action-buckets@v21
       with:
         key: ${{ secrets.TEXTILE_ACCOUNT_KEY }}
         secret: ${{ secrets.TEXTILE_ACCOUNT_SECRET }}
