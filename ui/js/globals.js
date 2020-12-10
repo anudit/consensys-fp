@@ -722,7 +722,42 @@ const contractABI = [
 		"type": "function"
 	}
 ];
-const contractAddress = "0x7A6A4CDF2136647902990bFd1e8fF03709eD2102".toLowerCase();
+
+const supportedChains = {
+	'3':'Ethereum Ropsten Testnet',
+	'4':'Ethereum Rinkeby Testnet',
+	'42':'Ethereum Kovan Testnet',
+	'5': 'Ethereum Goerli Testnet',
+	'80001': 'Matic Network Mumbai Testnet',
+	'31': 'RSK Network Testnet'
+}
+
+const chainExplorers = {
+	'3':'https://ropsten.etherscan.io',
+	'4':'https://rinkeby.etherscan.io',
+	'42':'https://kovan.etherscan.io',
+	'5': 'https://goerli.etherscan.io',
+	'80001': 'https://mumbai-explorer.matic.today',
+	'31': 'https://explorer.testnet.rsk.co'
+}
+
+const contractAddress = {
+	'3':'0x1EeE2c77eACB363CF371c20478F52051cedfeCb3',
+	'4':'0x75ba4719aCA3BcC56E70b59B3d1BE89bfeFBA009',
+	'42':'0x11bF559434F083B079a9f08B0Cd6c8909EdfC2f6',
+	'5': '0xc65889D17aa15F57D324Ce16B9296243Cc04824b',
+	'80001': '0x91E42B79318e6C5fd36f6f89bF8bd964478bEEb7',
+	'31': '0x7aa0582a7579b3f8c9ad0a294e68f33c5bb80135'
+}
+
+const blockNumbers = {
+	'3':'9232024',
+	'4':'7693693',
+	'42':'22515026',
+	'5': '3900445',
+	'80001': '7867409',
+	'31': '1431386'
+}
 
 const COORDINATOR_NODE = "https://saarthi-coor.herokuapp.com/";
 const TESTER_NODE = "https://covidsymptomtester.herokuapp.com/";

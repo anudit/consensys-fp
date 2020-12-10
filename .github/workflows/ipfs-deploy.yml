@@ -1,4 +1,4 @@
-name: "Textile Bucket - Deploy"
+name: "Deploy on IPFS"
 on:
   push:
     branches:

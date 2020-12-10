@@ -80,30 +80,44 @@ window.addEventListener('load', async () => {
 
         let netId = parseInt(ethereum.chainId);
         window.netId = netId;
-        if(netId != 31){
+
+        if(Object.keys(supportedChains).includes(netId.toString()) === false){
+            let alHtml = '<ul class="list-group list-group">';
+            Object.keys(supportedChains).forEach((chainID)=>{
+                alHtml+=`<li class="list-group-item">${supportedChains[chainID]}</li>`
+            })
+            alHtml += '</ul>';
             Swal.fire({
                 icon: 'error',
-                title: 'Warning ⚠ - Wrong Network',
-                html: `Please switch to https://public-node.testnet.rsk.co`
+                title: "Incorrect Network",
+                html: `Please switch to a supported network below <br/><br/>` + alHtml
             });
+        }
+        else {
+            setupContracts(accounts, netId);
         }
 
     }
     else if (web3.currentProvider.isFortmatic === true){
         accounts = await web3.currentProvider.enable();
+        setupContracts(accounts, '31');
     }
     else if (web3.currentProvider.isTorus === true){
         accounts = await web3.currentProvider.enable();
+        setupContracts(accounts, '31');
     }
     else {
         accounts = await web3.currentProvider.enable();
+        setupContracts(accounts, '31');
     }
 
-    Saarthi = new web3.eth.Contract(contractABI, contractAddress);
+});
+
+function setupContracts(accounts, netId){
+    Saarthi = new web3.eth.Contract(contractABI, contractAddress[netId])
     window.accounts = accounts;
     init(accounts);
-
-});
+}
 
 function getAddress(){
     if (Boolean(web3.currentProvider.selectedAddress) === true){

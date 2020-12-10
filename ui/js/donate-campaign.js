@@ -3,7 +3,7 @@ async function init(accounts) {
     document.getElementById("userAddress").innerText = trimAdd(accounts[0]);
 
     web3.eth.getBalance(accounts[0], function(error, result) {
-        document.getElementById("userBalance").innerText = parseFloat(web3.utils.fromWei(result, "ether")).toFixed(2)+" RBTC";
+        document.getElementById("userBalance").innerText = parseFloat(web3.utils.fromWei(result, "ether")).toFixed(2)+" ETH";
     });
     refreshUI();
 }
@@ -91,7 +91,7 @@ async function getCampaigns() {
                         <div class="card-text"> \
                             ${campaignData} \
                         </div> \
-                        <div class="title title-2">${billAmount} <span class="text-sm" style="margin-top:0;margin-bottom:0;"> RBTC</span></div> \
+                        <div class="title title-2">${billAmount} <span class="text-sm" style="margin-top:0;margin-bottom:0;"> ETH</span></div> \
                         <div class="row form-group center" style="margin: 0 0 10px;"> \
                             <input class="form-control" type="number" placeholder="Donation Amount 💰" required="" id = "dA${userAddress}"> \
                         </div> \
@@ -99,8 +99,6 @@ async function getCampaigns() {
                     </div> \
                 </div>`;
             }
-
-
 
         }
 
@@ -119,7 +117,7 @@ async function donate(_address) {
 
         let donationValueEle = document.getElementById(`dA${_address}`);
         let donationValue = parseFloat(donationValueEle.value);
-        Saarthi.methods.donateToUser(_address).send({from:getAddress(),value: web3.utils.toWei(donationValue, 'ether')},function(error, result) {
+        Saarthi.methods.donateToUser(_address).send({from:getAddress(),value: web3.utils.toWei(donationValue.toString(), 'ether')},function(error, result) {
             if (!error)
                 res(result);
             else{

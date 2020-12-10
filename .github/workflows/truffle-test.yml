@@ -1,4 +1,4 @@
-name: Run Truffle Tests
+name: Run Solidity Tests
 
 on:
   push:

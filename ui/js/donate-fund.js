@@ -3,7 +3,7 @@ async function init(accounts) {
     document.getElementById("userAddress").innerText = trimAdd(accounts[0]);
 
     web3.eth.getBalance(accounts[0], function(error, result) {
-        document.getElementById("userBalance").innerText = parseFloat(web3.utils.fromWei(result, "ether")).toFixed(2)+" RBTC";
+        document.getElementById("userBalance").innerText = parseFloat(web3.utils.fromWei(result, "ether")).toFixed(2)+" ETH";
     });
     refreshUI();
 }
@@ -57,7 +57,7 @@ async function getFundDetails() {
                             <div class="card-preview"> \
                                 <img class="card-pic" src="/img/funds/${fund.orgName}.jpg" alt="" style=" max-height: 100px; "> \
                             </div> \
-                            <div class="title title-2">${fund.donationAmount} <span class="text-sm" style="margin-top:0;margin-bottom:0;"> RBTC</span></div> \
+                            <div class="title title-2">${fund.donationAmount} <span class="text-sm" style="margin-top:0;margin-bottom:0;"> ETH</span></div> \
                             <div class="title title-4"><a target='_blank' href="https://explorer.testnet.rsk.co/address/${fund.fundAddress}">${fund.orgName}<a></div> \
                             <div class="card-text">${fund.fundName}</div> \
                             <div class="row form-group center" style="margin: 0 0 10px;"> \
@@ -87,7 +87,7 @@ async function donate(_orgID) {
     let promise = new Promise((res, rej) => {
 
         let donationValue = parseFloat(document.getElementById(`donationAmount${_orgID}`).value);
-        Saarthi.methods.donateToFund(parseInt(_orgID)).send({from:getAddress(),value: web3.utils.toWei(donationValue, 'ether')},function(error, result) {
+        Saarthi.methods.donateToFund(parseInt(_orgID).toString()).send({from:getAddress(),value: web3.utils.toWei(donationValue.toString(), 'ether')},function(error, result) {
             if (!error)
                 res(result);
             else{
